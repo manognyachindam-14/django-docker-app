@@ -89,11 +89,11 @@ WSGI_APPLICATION = 'DjangoRestApisPostgreSQL.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'testdb',
-        'USER': 'postgres',
-        'PASSWORD': '123',
-        'HOST': '127.0.0.1',
-        'PORT': '5432',
+        'NAME': os.environ.get('DATABASE_NAME', 'mydatabase'),
+        'USER': os.environ.get('DATABASE_USER', 'myuser'),
+        'PASSWORD': os.environ.get('DATABASE_PASSWORD', 'mypassword'),
+        'HOST': os.environ.get('DATABASE_HOST', 'db'),  # ✅ Must match service name in docker-compose
+        'PORT': os.environ.get('DATABASE_PORT', '5432'),
     }
 }
 
